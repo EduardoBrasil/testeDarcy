@@ -1,51 +1,108 @@
-Para contribuir com esse repositório é necessário a instalação do VirtualBox e Vagrant.
+# 2017.1 Onde É UnB
 
-Faça clone ou download do repositorio
+## Instalação
 
-git clone <url>
+Para contribuir com esse repositório é necessário a instalação do VirtualBox e Vagrant em um ambiente linux como o ubuntu.
 
-Entre no arquivo e execute:
+Veja informações e resoluções de alguns problemas com Vagrant em https://pt.wikiversity.org/wiki/Vagrant_e_Docker
 
-vagrant up
+Faça clone ou download do repositório.
 
-Após isso, entre na máquina virtual:
+```console
+$ git clone https://github.com/fga-gpp-mds/2017.1-LocalizacaoDarcy
+```
 
-vagrant ssh
+Entre no arquivo clonado e execute o seguinte comando para fazer o boot na máquina virtual e executa os o que está definido no VagrantFile
 
-Abra o bash:
+```console
+$ vagrant up
+```
 
-vim ~/.bashrc
+Após isso, entre na maquina virtual criada
+```console
+$ vagrant ssh
+```
 
-Insira essa linha no final do arquivo para que na próxima vez que abrir com ssh já abra na pasta do projeto.
+Agora já na máquina virtual criada entre no bash
+```console
+$ vim ~/.bashrc
+```
 
+E adicione a seguinte linha no final do arquivo para que na próxima vez que abrir com ssh já abra na pasta do projeto.
+
+```console
 cd /vagrant/darcyWeb
+```
 
-Configure o postgree com:
+Para entrar na pasta, reinicie o vagrant ssh ou digite
+```console
+$ cd
+$ cd vagrant/
+```
 
-sudo su
-cd
-nano /etc/postgresql/9.5/main/pg_hba.conf
+Já na máquina virtual, configure o postgree com:
 
-Altere as linhas:
-local	all	postgres	peer
-local	all	all	peer
+Entre no modo root
+```console
+$ sudo su
+```
+Abra o seguinte arquivo
+```console
+$ nano /etc/postgresql/9.5/main/pg_hba.conf
+```
+
+Altere as linhas do arquivo de:
+```console
+local all postgres peer
+local all all peer
+```
 
 Para:
+```console
+local all postgres trust
+local all all trust
+```
 
-local	all	postgres	trust
-local	all	all	trust
-
-E reinicie o postgree:
-
+Reinicie o postgree
+```console
 service postgresql reload
+```
 
-Saia do modo root:
+Ainda no modo root, entre com o usuário postgres
+```console
+su postgres
+```
 
+Entre no postgresql
+```console
+psql -U postgres
+```
+
+Crie o usuário vagrant e autorize-o a criar databases
+```console
+CREATE USER vagrant WITH createdb;
+```
+
+Saia do postgres
+```console
+\q
+```
+
+Saia do usuário postgres e root
+```console
 exit
+exit
+```
 
-Entre na pasta do projeto e digite:
-bundle install
+Entre na pasta do projeto em rails darcyWeb e execute
+```console
+rake db:setup
 rake db:migrate
-rails s
+```
+* Ps: em edição, caso não funcione essa etapa, tente rake db:create:all e entao rake db:migrate. Se quiser testar ainda mais, execute rails g scaffold Foo name:text description:text
 
-O seu site deverá estar rodando em localhost:8080
+Rode o servidor
+```console
+$ rails s
+```
+Abra seu navegador em localhost:8080
