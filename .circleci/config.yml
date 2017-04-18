@@ -25,3 +25,7 @@ jobs:
       - run:
           name: Run Tests
           command: cd darcyWeb && bundle exec rake test
+       
+       exclude_paths:
+          - darcyWeb/vendor/assets/**/*
+          - "**/darcyWeb/vendor/assets/**/*"
