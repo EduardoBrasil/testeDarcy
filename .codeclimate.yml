@@ -20,4 +20,5 @@ ratings:
   - "app/controllers/*.rb"
   - "app/models/*.rb"
 exclude_paths:
-- "vendor/assets/javascripts/"
+- "javascript/admin/vendor.js"
+- "javascript/admin/app.js"
