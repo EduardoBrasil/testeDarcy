@@ -1,11 +1,13 @@
 engines:
-  brakeman:
-    enabled: true
-  bundler-audit:
-    enabled: true
   rubocop:
     enabled: true
-  reek:
+  brakeman:
+    enabled: true
+  eslint:
+    enabled: true
+    config:
+      config: .eslintrc
+  csslint:
     enabled: true
   duplication:
     enabled: true
@@ -13,22 +15,15 @@ engines:
       languages:
       - ruby
       - javascript
-  fixme:
-    enabled: true
-
 ratings:
   paths:
-  - Gemfile.lock
-  - app/**
+  - "- app/**"
   - lib/**
   - "**.rb"
-  - "**.erb"
-  - "**.js"
-  - "**.css"
-
 exclude_paths:
-- javascript/admin/vendor.js
-- javascript/admin/app.js
+- "vendor/assets/javascripts/"
 
+
+ 
 
 
