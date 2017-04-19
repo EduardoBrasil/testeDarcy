@@ -1,12 +1,5 @@
+---
 engines:
-  rubocop:
-    enabled: true
-  brakeman:
-    enabled: true
-  eslint:
-    enabled: true
-    config:
-      config: .eslintrc
   csslint:
     enabled: true
   duplication:
@@ -15,15 +8,16 @@ engines:
       languages:
       - ruby
       - javascript
+      
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
 ratings:
   paths:
-  - "- app/**"
-  - lib/**
-  - "**.rb"
+  - "app/controllers/*.rb"
+  - "app/models/*.rb"
 exclude_paths:
 - "vendor/assets/javascripts/"
-
-
- 
-
-
