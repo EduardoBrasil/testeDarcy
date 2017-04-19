@@ -21,4 +21,5 @@ ratings:
   - "**.rb"
 
 exclude_paths:
-  - vendor/assets/javascripts/*
+- javascript/admin/vendor.js
+- javascript/admin/app.js
