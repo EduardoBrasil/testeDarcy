@@ -27,6 +27,6 @@ ratings:
   - "**.go"
 exclude_paths:
 - darcyWeb/vendor/assets/javascripts/admin/vendor.js
-- javascript/admin/app.js
+
 
 
