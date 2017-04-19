@@ -27,5 +27,5 @@ jobs:
           command: cd darcyWeb && bundle exec rake test
           
       exclude_paths:
-        - "vendor/assets/javascripts/admin"
-        - "**/vendor/"
+        - vendor/assets/javascripts/admin/*
+
